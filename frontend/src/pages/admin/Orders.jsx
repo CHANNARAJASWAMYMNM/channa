@@ -6,7 +6,7 @@ function Orders() {
   const [loading, setLoading] = useState(true);
 
   const fetchOrders = () => {
-    fetch('http://localhost:5000/api/orders')
+    fetch('/api/orders')
       .then(res => res.json())
       .then(data => {
         setOrders(data);
@@ -20,7 +20,7 @@ function Orders() {
 
   const updateStatus = async (id, status) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${id}`, {
+      const res = await fetch(`/api/orders/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })

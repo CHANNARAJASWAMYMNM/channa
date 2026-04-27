@@ -7,7 +7,7 @@ function Artisans() {
   const [loading, setLoading] = useState(true);
 
   const fetchArtisans = () => {
-    fetch('http://localhost:5000/api/artisans')
+    fetch('/api/artisans')
       .then(res => res.json())
       .then(data => {
         setArtisans(data);
@@ -22,7 +22,7 @@ function Artisans() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/artisans', {
+      const res = await fetch('/api/artisans', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

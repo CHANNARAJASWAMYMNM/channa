@@ -12,8 +12,8 @@ function Products() {
 
   const fetchData = () => {
     Promise.all([
-      fetch('http://localhost:5000/api/products').then(res => res.json()),
-      fetch('http://localhost:5000/api/artisans').then(res => res.json())
+      fetch('/api/products').then(res => res.json()),
+      fetch('/api/artisans').then(res => res.json())
     ]).then(([productsData, artisansData]) => {
       setProducts(productsData);
       setArtisans(artisansData);
@@ -31,7 +31,7 @@ function Products() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/products', {
+      const res = await fetch('/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

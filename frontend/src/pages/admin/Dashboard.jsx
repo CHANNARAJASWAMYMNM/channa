@@ -15,8 +15,8 @@ function Dashboard() {
     // In a real app, this would be an aggregation endpoint.
     // For MVP, we'll fetch all data and calculate.
     Promise.all([
-      fetch('http://localhost:5000/api/orders').then(res => res.json()),
-      fetch('http://localhost:5000/api/products').then(res => res.json())
+      fetch('/api/orders').then(res => res.json()),
+      fetch('/api/products').then(res => res.json())
     ]).then(([ordersData, productsData]) => {
       let sales = 0;
       let profit = 0;
