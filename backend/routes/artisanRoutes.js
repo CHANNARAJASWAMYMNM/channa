@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Artisan = require('../models/Artisan');
+const { artisans } = require('../dataStore');
 
 // Get all artisans
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   try {
-    const artisans = await Artisan.find();
     res.json(artisans);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -13,16 +12,18 @@ router.get('/', async (req, res) => {
 });
 
 // Create artisan
-router.post('/', async (req, res) => {
-  const artisan = new Artisan({
-    name: req.body.name,
-    village: req.body.village,
-    contactInfo: req.body.contactInfo,
-    story: req.body.story
-  });
-
+router.post('/', (req, res) => {
   try {
-    const newArtisan = await artisan.save();
+    const newArtisan = {
+      _id: Date.now().toString(),
+      name: req.body.name,
+      village: req.body.village,
+      contactInfo: req.body.contactInfo,
+      story: req.body.story,
+      createdAt: new Date().toISOString()
+    };
+
+    artisans.push(newArtisan);
     res.status(201).json(newArtisan);
   } catch (err) {
     res.status(400).json({ message: err.message });
