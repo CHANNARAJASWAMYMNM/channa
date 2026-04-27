@@ -22,9 +22,9 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pottery-m
 .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
-app.use('/api/artisans', artisanRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/orders', orderRoutes);
+app.use('/artisans', artisanRoutes);
+app.use('/products', productRoutes);
+app.use('/orders', orderRoutes);
 
 app.get('/', (req, res) => {
   res.send('Pottery Marketplace API is running');
